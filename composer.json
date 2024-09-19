@@ -1,0 +1,19 @@
+{
+    "name": "agilsjt/ppbo2024",
+    "description": "Merupakan package untuk latihan pemrograman berorientasi objek",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "agilsjt",
+            "email": "agilsujito8@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "App\\":"App"
+        }
+    }
+
+}
