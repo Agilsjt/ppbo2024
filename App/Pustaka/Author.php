@@ -1,5 +1,6 @@
 <?php
 namespace App\Pustaka;
+
 class Author
 {
     public $name;

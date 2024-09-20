@@ -1,5 +1,6 @@
 <?php
 namespace App\Pustaka;
+
 class Book
 {
     public $ISBN;

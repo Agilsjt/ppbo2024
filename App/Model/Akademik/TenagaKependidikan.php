@@ -1,5 +1,6 @@
 <?php
 namespace App\Model\Akademik;
+
 use App\Model\Akademik\Pegawai;
 
 class TenagaKependidikan extends Pegawai {
