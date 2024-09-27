@@ -14,4 +14,8 @@ class Dosen extends Pegawai {
     public function mengajar() {
         echo "{$this->nama} dengan nidn {$this->nidn} sedang mengajar perkuliahan";
     }
+
+    public function getNidn() {
+        return $this->nidn;
+    }
 }
