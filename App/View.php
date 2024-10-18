@@ -3,7 +3,6 @@
 
 namespace App;
 
-
 class View
 {
     public static function json($data)

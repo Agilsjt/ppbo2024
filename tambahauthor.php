@@ -5,7 +5,6 @@ use App\View;
 
 require_once 'vendor/autoload.php';
 
-
 $author = new Author();
 $author->id = 11;
 $author->name = 'Agil Sujito';
