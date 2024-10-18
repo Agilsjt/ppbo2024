@@ -52,6 +52,18 @@ class Author extends Model
         return $authors;
     }
 
+    public function detail($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM author WHERE id= {$id}");
+        if ($stmt->execute()) {
+            $author = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $this->id = $author['id'];
+            $this->name = $author['name'];
+            $this->description = $author['description'];
+        } else {
+            $author = null;
+        }
+    }
 
 
     public function show(): array
