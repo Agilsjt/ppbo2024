@@ -1,26 +1,77 @@
 <?php
-namespace App\Pustaka;
 
-class Publisher
+namespace App\Model\Pustaka;
+
+use App\Model\Model;
+
+class Publisher extends Model
 {
-    public $name;
-    public $address;
-    private $phone;
+    public int $id;
+    public string $name;
+    public string $address;
+    public string $phone;
 
-    public function __construct($name, $address)
+    public function save()
     {
-        $this->name = $name;
-        $this->address = $address;
+        try {
+            $stmt = $this->db->prepare("INSERT INTO publisher (id, name, address, phone) VALUES (:id, :name, :address, :phone)");
+            $stmt->bindParam(':id', $this->id);
+            $stmt->bindParam(':name', $this->name);
+            $stmt->bindParam(':address', $this->address);
+            $stmt->bindParam(':phone', $this->phone);
+            $result = $stmt->execute();
+        } catch (\PDOException $e) {
+            http_response_code(500);
+            $result = ["message" => $e->getMessage()];
+        }
+
+        return $result;
     }
 
-    public function setPhone($phone): void
+
+    public static function all(): array
     {
-        $this->phone = $phone;
+        $publishers = [];
+        $model = new Model();
+        $db = $model->getDB();
+        $stmt = $db->prepare("SELECT * FROM publisher");
+        if ($stmt->execute()) {
+            $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            foreach ($results as $key => $item) {
+                $publisher = new Publisher();
+                $publisher->id = $item['id'];
+                $publisher->name = $item['name'];
+                $publisher->address = $item['address'];
+                $publisher->phone = $item['phone'];
+                $publishers[] = $publisher;
+            }
+        } else {
+            $publishers = null;
+        }
+
+        return $publishers;
     }
 
-
-    public function getPhone(): string
+    public function detail($id)
     {
-        return $this->phone;
+        $stmt = $this->db->prepare("SELECT * FROM publisher WHERE id= {$id}");
+        if ($stmt->execute()) {
+            $publisher = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $this->id = $publisher['id'];
+            $this->name = $publisher['name'];
+            $this->address = $publisher['address'];
+            $this->phone = $publisher['phone'];
+        } else {
+            $publisher = null;
+        }
+    }
+
+    
+    public function show(): array
+    {
+        return [];
     }
 }
+
+
+
