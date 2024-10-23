@@ -65,7 +65,6 @@ class Publisher extends Model
             $publisher = null;
         }
     }
-
     
     public function show(): array
     {

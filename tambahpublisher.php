@@ -5,6 +5,7 @@ use App\View;
 
 require_once 'vendor/autoload.php';
 
+
 $publisher = new Publisher();
 $publisher->id = 5;
 $publisher->name = 'Penerbit Tanjungpura';
