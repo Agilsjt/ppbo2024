@@ -14,6 +14,10 @@ class Author extends Model
     public string $description;
 
 
+
+
+
+
     public function save()
     {
         try {
@@ -21,7 +25,17 @@ class Author extends Model
             $stmt->bindParam(':id', $this->id);
             $stmt->bindParam(':name', $this->name);
             $stmt->bindParam(':description', $this->description);
-            $result = $stmt->execute();
+            $status = $stmt->execute();
+
+
+            $stmt = $this->db->query("SELECT LAST_INSERT_ID()");
+            $last_id = $stmt->fetchColumn();
+
+
+            $result = [
+                'status'=> $status,
+                'id'=> $last_id
+            ];
         } catch (\PDOException $e) {
             http_response_code(500);
             $result = ["message" => $e->getMessage()];
@@ -52,6 +66,7 @@ class Author extends Model
         return $authors;
     }
 
+
     public function detail($id)
     {
         $stmt = $this->db->prepare("SELECT * FROM author WHERE id= {$id}");
@@ -66,9 +81,10 @@ class Author extends Model
     }
 
 
+
+
     public function show(): array
     {
         return [];
     }
 }
-
