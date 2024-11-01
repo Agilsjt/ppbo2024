@@ -1,12 +1,17 @@
 <?php
+
+
 use App\Model\Pustaka\Author;
 use App\View;
 
 
 require_once 'vendor/autoload.php';
 
+
+
+
 $author = new Author();
-$author->id =11;
-$author->name = 'Agil Sujito';
-$author->description = 'Email: wiraaja@gmail.com';
+$author->id = $_POST['id'];
+$author->name = $_POST['name'];
+$author->description = $_POST['description'];
 View::json($author->save());
