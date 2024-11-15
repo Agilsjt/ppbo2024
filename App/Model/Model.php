@@ -1,9 +1,9 @@
 <?php
 
+
 namespace App\Model;
 
 header('Content-Type: application/json; charset=utf-8');
-
 
 use PDO;
 use PDOException;
@@ -12,7 +12,6 @@ use PDOException;
 class Model
 {
     protected $db;
-
 
     public function __construct()
     {
@@ -24,16 +23,10 @@ class Model
             echo "Connection failed: " . $e->getMessage();
         }
 
-
-
-
     }
-
 
     public function getDB()
     {
         return $this->db;
     }
-
-
 }
