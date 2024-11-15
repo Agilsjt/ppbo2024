@@ -1,9 +1,7 @@
 <?php
-
-require_once 'Author.php';
-require_once 'Publisher.php';
-require_once 'Book.php';
-
+ use App\Model\Pustaka\Author;
+ use App\Model\Pustaka\Publisher;
+ use App\Model\Pustaka\Book;
 
 $author = new Author("J.K. Rowling", "Penulis dari seri Harry Potter");
 

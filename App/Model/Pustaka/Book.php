@@ -1,5 +1,5 @@
 <?php
-namespace App\Pustaka;
+namespace App\Model\Pustaka;
 
 class Book
 {
